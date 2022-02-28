@@ -8,6 +8,40 @@
     <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="adminContainer">
+        <h3 class="adminHeading">Clever Well Water Report</h3>
+        <table class = "submissionTable" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Well One Reading</th>
+                    <th>Well One Free</th>
+                    <th>Well Two Reading</th>
+                    <th>Team Two Free</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in list_users %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+                    
+                    
+                    <td width="100">
+                        
+                    <a href="/edit/{{row[0]}}" class="edit-btn">Edit</a> 
+                    <a href="/delete/{{row[0]}}" class="delete-btn">Delete</a>
+                {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

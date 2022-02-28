@@ -95,3 +95,19 @@ input {
         padding: 8px;
     }
 }
+
+/* Admin Page */
+
+.adminContainer {
+    background: gray;
+    position: relative;
+    color: black;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    text-align: center;
+    transform: translate(-50%, 50%);
+    width: 1100px;
+    padding: 20px 60px;
+    box-shadow: 1px 1px 20px darkgray;
+}
