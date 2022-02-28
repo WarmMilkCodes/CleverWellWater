@@ -1,11 +1,10 @@
-from asyncio.windows_events import NULL
 from flask import Flask, flash, render_template, request, redirect, url_for, Response
 from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 import psycopg2.extras
 import io
 import csv
-import xlwt
+#import xlwt
 
 
 app = Flask(__name__)

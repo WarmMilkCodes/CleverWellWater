@@ -13,7 +13,7 @@ html {
 /* Home Page */
 
 .container {
-    background-color: #1C4ABD;
+    background-color: grey;
     position: relative;
     color: #fff;
     top: 50%;
@@ -52,12 +52,12 @@ a:hover {
     width: 5%;
     height: 30px;
     background: #fff;
-    color: #1C4ABD;
+    color: black;
     border-radius: 4px;
 }
 
 .submit-btn:hover {
-    background: green;
+    background: blue;
     color: #fff;
 }
 
@@ -85,10 +85,6 @@ input {
     input {
         padding: 0;
         margin: 0;
-    }
-
-    .navBar {
-        height: 20%;
     }
 
     .container {
