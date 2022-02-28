@@ -86,17 +86,12 @@ def submit():
     if request.method == 'POST':
         date = request.form['date']
         wellonereading = request.form['well-one-reading']
-        wellonetotal = request.form['well-one-total']
         wellonefree = request.form['well-one-free']
         welltworeading = request.form['well-two-reading']
-        welltwototal = request.form['well-two-total']
         welltwofree = request.form['well-two-free']
-        outsideonereading = request.form['outsideonereading']
-        outsideonetotal = request.form['outsideonetotal']
-        outsideonefree = request.form['outsideonefree']
-        outsidetworeading = request.form['outsidetworeading']
-        outsidetwototal = request.form['outsidetwototal']
-        outsidetwofree = request.form['outsidetwofree']
+        outsidereading = request.form['outsideeading']
+        outsidetotal = request.form['outsidetotal']
+        outsidefree = request.form['outsidefree']
 
 
         if date == '' or wellonereading == '' or wellonetotal == '' or wellonefree == '' or welltworeading == '' or welltwototal == '' or welltwofree == '':
