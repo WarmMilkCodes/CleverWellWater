@@ -1,0 +1,76 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    overflow: visible;
+    background-color: #3E4045;
+}
+
+/* Home Page */
+
+.container {
+    background-color: #1C4ABD;
+    position: relative;
+    color: #fff;
+    top: 50%;
+    left: 0%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px 60px;
+    box-shadow: 1px 1px 20px #fff;
+}
+
+.description {
+    text-align: center;
+}
+
+/* Navbar */
+
+.navBar {
+    background: #3E4045;
+    height: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    cursor: pointer;
+    color: lightblue;
+}
+
+/* Submit Button */
+
+.submit-btn {
+    border: none;
+    width: 5%;
+    height: 30px;
+    background: #fff;
+    color: #1C4ABD;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background: green;
+    color: #fff;
+}
+
+/* Input Form */
+
+.form-group {
+    margin: 2px 0;
+}
+
+input {
+    text-indent: 10px;
+    width: 13%;
+    height: 30px;
+    border-radius: 10px;
+}
+
