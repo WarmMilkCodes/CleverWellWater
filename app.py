@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from flask import Flask, flash, render_template, request, redirect, url_for, Response
 from flask_sqlalchemy import SQLAlchemy
 import psycopg2
@@ -11,17 +12,17 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 # Development vs. Production Environment
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    #app.config['SQLALCHEMY_DATABASE_URI'] = #######DB ADDRESS HERE########
-    '''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/wells'
+    
     DB_HOST = 'localhost'
-    DB_NAME = 'vote'
+    DB_NAME = 'wells'
     DB_USER = 'postgres'
     DB_PASS = 'password'
-    '''
+    
     conn = psycopg2.connect(dbname=DB_NAME, 
                             user=DB_USER, 
                             password=DB_PASS, 
@@ -30,12 +31,12 @@ else:
     app.debug = False
     #DATABASE_URL = HEROKU URL HERE
     
-    '''
-    DB_HOST = 
-    DB_NAME = 
-    DB_USER = 
-    DB_PASS = 
-    '''    
+    
+    DB_HOST = NULL
+    DB_NAME = NULL
+    DB_USER = NULL
+    DB_PASS = NULL
+        
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
                         password=DB_PASS, 
@@ -91,8 +92,15 @@ def submit():
         welltworeading = request.form['well-two-reading']
         welltwototal = request.form['well-two-total']
         welltwofree = request.form['well-two-free']
-        
-        if username == '' or league == '' or team1 == '' or team2 == '' or team3 == '' or team4 == '' or team5 == '' or team6 == '' or team7 == '' or team8 == '' or team9 == '' or team10 == '':
+        outsideonereading = request.form['outsideonereading']
+        outsideonetotal = request.form['outsideonetotal']
+        outsideonefree = request.form['outsideonefree']
+        outsidetworeading = request.form['outsidetworeading']
+        outsidetwototal = request.form['outsidetwototal']
+        outsidetwofree = request.form['outsidetwofree']
+
+
+        if date == '' or wellonereading == '' or wellonetotal == '' or wellonefree == '' or welltworeading == '' or welltwototal == '' or welltwofree == '':
                return render_template('index.html', message="Please fill all required fields.")
         cur.execute("INSERT INTO voting (username, league, team1, team2, team3, team4, team5, team6, team7, team8, team9, team10) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (username, league, team1, team2, team3, team4, team5, team6, team7, team8, team9, team10))
         conn.commit()
