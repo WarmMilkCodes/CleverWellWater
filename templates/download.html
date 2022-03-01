@@ -8,6 +8,21 @@
     <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
+    <div class="navBar">
+        <nav>
+            <a class="homeLink" href="index.html">Home</a>
+            <a class="divider">|||</a>
+            <a class='adminLink' href="./admin.html">Admin Panel</a>
+            <a class="divider">|||</a>
+            <a class="dlLink" href="./download.html">Download Report</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h3 class="heading">Well Water Excel Report</h3>
+        <p>
+            <a class="downloadLink" href={{ url_for('.download_report') }}>Download Report</a>
+        </p>
+    </div>
     
 </body>
 </html>

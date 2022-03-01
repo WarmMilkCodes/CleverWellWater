@@ -11,17 +11,17 @@
     <div class="navBar">
         <nav>
             <a class="homeLink" href={{ url_for('index') }}>Home</a>
-            <a>|||</a>
+            <a class="divider">|||</a>
             <a class='adminLink' href="./admin.html">Admin Panel</a>
-            <a>|||</a>
+            <a class="divider">|||</a>
             <a class="dlLink" href="./download.html">Download Report</a>
         </nav>
     </div>
     <div class="container">
-    <h2 class="heading">City of Clever Well Water</h2>
-    <p class="description">Daily Well Report</p>
-    <hr>
-    <form action="/submit" method="POST">
+        <h3 class="heading">City of Clever Well Water</h3>
+        <p class="description">Daily Well Report</p>
+        
+        <form action="/submit" method="POST">
 
         <div class="form-group">
             <input type="date" name="date" placeholder="Date" required/>

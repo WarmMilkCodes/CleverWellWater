@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Record</title>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navBar">
+        <nav>
+            <a class="homeLink" href="./index.html">Home</a>
+            <a class="divider">|||</a>
+            <a class='adminLink' href="./admin.html">Admin Panel</a>
+            <a class="divider">|||</a>
+            <a class="dlLink" href="./download.html">Download Report</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h3 class="heading">Edit Record</h3>
+        <form action="/update/{{voting.id}}" method="POST">
+            <div class="form-group">
+                <input type="date" name="date"  value="{{well.date}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="well-one-reading"  value="{{well.well-one-reading}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="well-one-free"  value="{{well.well-one-free}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="well-two-reading"  value="{{well-two-reading}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="well-two-free"  value="{{well-two-free}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="out-reading"  value="{{out-reading}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="out-free"  value="{{out-free}}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="out-total"  value="{{out-total}}">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Update</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
