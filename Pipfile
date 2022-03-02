@@ -9,6 +9,7 @@ flask-sqlalchemy = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 xlwt = "*"
+heroku = "*"
 
 [dev-packages]
 
