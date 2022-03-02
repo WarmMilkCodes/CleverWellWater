@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 # Development vs. Production Environment
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
@@ -32,9 +32,9 @@ else:
     
     
     DB_HOST = 'ec2-3-228-222-169.compute-1.amazonaws.com'
-    DB_NAME = 'd6mome3tiuag88'
-    DB_USER = 'ipboxaivgdyltp'
-    DB_PASS = '0379a23d923e2a0b0e91308ac545be8b5a7ed72f14a041b4b31a480c671bd310'
+    DB_NAME = 'db8pq96jum6v55'
+    DB_USER = 'kdvrrlftxwwnny'
+    DB_PASS = '59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc'
     
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
