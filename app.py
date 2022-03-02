@@ -54,7 +54,7 @@ def index():
 @app.route('/admin')
 def adminPanel():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    s = "SELECT * FROM results"
+    s = "SELECT * FROM wells"
     cur.execute(s) # Execute the SQL
     list_users = cur.fetchall()
     return render_template('admin.html', list_users = list_users)
@@ -79,17 +79,21 @@ def submit():
         outside_free = request.form['outside_free']
 
 
-        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '':
+        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_reading == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
-        cur.execute("INSERT INTO results (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
+        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
         conn.commit()
-        return redirect(url_for('index'))
+        curs = conn.cursor()
+        curs.execute("ROLLBACK")
+        conn.commit()
+        
+        
 
 
 @app.route('/delete/<string:id>', methods= ['POST','GET'])
 def deleteUser(id):
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute('DELETE FROM results WHERE id = {0}'.format(id))
+        cur.execute('DELETE FROM wells WHERE id = {0}'.format(id))
         conn.commit()
         flash('Record deleted.')
         return redirect(url_for('admin'))
@@ -102,7 +106,7 @@ def download():
 @app.route('/download/report/excel')
 def download_report():
     curr = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    curr.execute("SELECT * FROM results")
+    curr.execute("SELECT * FROM wells")
     result = curr.fetchall()
     #for row in result:
         #print(row)
