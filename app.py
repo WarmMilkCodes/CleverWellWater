@@ -11,14 +11,14 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 # Development vs. Production Environment
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/wells'
     
     DB_HOST = 'localhost'
-    DB_NAME = 'wells'
+    DB_NAME = 'postgres'
     DB_USER = 'postgres'
     DB_PASS = 'password'
     
