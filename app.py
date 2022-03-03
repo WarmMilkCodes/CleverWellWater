@@ -28,13 +28,13 @@ if ENV == 'dev':
                             host=DB_HOST)
 else:
     app.debug = False
-    DATABASE_URL = ('postgres://kdvrrlftxwwnny:59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc9@ec2-3-228-222-169.compute-1.amazonaws.com:5432/db8pq96jum6v55')
+    DATABASE_URL = ('postgres://pezlqpguqtkknf:5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498@ec2-44-193-188-118.compute-1.amazonaws.com:5432/dad4ir0jhk9v39')
     
     
-    DB_HOST = 'ec2-3-228-222-169.compute-1.amazonaws.com'
-    DB_NAME = 'db8pq96jum6v55'
-    DB_USER = 'kdvrrlftxwwnny'
-    DB_PASS = '59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc'
+    DB_HOST = 'ec2-44-193-188-118.compute-1.amazonaws.com'
+    DB_NAME = 'dad4ir0jhk9v39'
+    DB_USER = 'pezlqpguqtkknf'
+    DB_PASS = '5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498'
     
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
