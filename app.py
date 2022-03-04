@@ -28,13 +28,13 @@ if ENV == 'dev':
                             host=DB_HOST)
 else:
     app.debug = False
-    DATABASE_URL = ('postgres://pezlqpguqtkknf:5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498@ec2-44-193-188-118.compute-1.amazonaws.com:5432/dad4ir0jhk9v39')
+    DATABASE_URL = ('postgres://kdvrrlftxwwnny:59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc9@ec2-3-228-222-169.compute-1.amazonaws.com:5432/db8pq96jum6v55')
     
     
-    DB_HOST = 'ec2-44-193-188-118.compute-1.amazonaws.com'
-    DB_NAME = 'dad4ir0jhk9v39'
-    DB_USER = 'pezlqpguqtkknf'
-    DB_PASS = '5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498'
+    DB_HOST = 'ec2-3-228-222-169.compute-1.amazonaws.com'
+    DB_NAME = 'db8pq96jum6v55'
+    DB_USER = 'kdvrrlftxwwnny'
+    DB_PASS = '59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc9'
     
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
@@ -74,14 +74,13 @@ def submit():
         well_one_free = request.form['well_one_free']
         well_two_reading = request.form['well_two_reading']
         well_two_free = request.form['well_two_free']
-        outside_reading = request.form['outside_reading']
         outside_total = request.form['outside_total']
         outside_free = request.form['outside_free']
 
 
-        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_reading == '' or outside_free == '' or outside_total == '':
+        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
-        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
+        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
         conn.commit()
         curs = conn.cursor()
         curs.execute("ROLLBACK")
