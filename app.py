@@ -69,7 +69,7 @@ def home():
 def submit():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
-        collection_date = request.form['collection_date']
+        collection_date = request.form['date']
         well_one_reading = request.form['well_one_reading']
         well_one_free = request.form['well_one_free']
         well_two_reading = request.form['well_two_reading']
@@ -80,7 +80,7 @@ def submit():
 
         if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
-        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
+        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free))
         conn.commit()
         curs = conn.cursor()
         curs.execute("ROLLBACK")
@@ -124,7 +124,6 @@ def download_report():
     sh.write(0, 3, 'Well One Free')
     sh.write(0, 4, 'Well Two Reading')
     sh.write(0, 5, 'Well Two Free')
-    sh.write(0, 6, 'Outside Reading')
     sh.write(0, 7, 'Outside Total')
     sh.write(0, 8, 'Outside Free')
 
@@ -137,7 +136,6 @@ def download_report():
         sh.write(id+1,3, row['Well One Free'])
         sh.write(id+1,4, row['Well Two Reading'])
         sh.write(id+1,5, row['Well Two Free'])
-        sh.write(id+1,6, row['Outside Reading'])
         sh.write(id+1,7, row['Outside Total'])
         sh.write(id+1,8, row['Outside Free'])
         id += 1
