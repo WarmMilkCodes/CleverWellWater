@@ -78,9 +78,9 @@ def submit():
         outside_free = request.form['outside_free']
 
 
-        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_free == '' or outside_total == '':
+        if date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
-        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free))
+        cur.execute("INSERT INTO wells (date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s)", (date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free))
         conn.commit()
         curs = conn.cursor()
         curs.execute("ROLLBACK")
