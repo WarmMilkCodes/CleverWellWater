@@ -69,7 +69,7 @@ def home():
 def submit():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
-        collection_date = request.form['date']
+        date = request.form['date']
         well_one_reading = request.form['well_one_reading']
         well_one_free = request.form['well_one_free']
         well_two_reading = request.form['well_two_reading']
