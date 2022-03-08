@@ -11,7 +11,9 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 # Development vs. Production Environment
-ENV = 'prod'
+ENV = 'dev'
+
+db = SQLAlchemy()
 
 if ENV == 'dev':
     app.debug = True
@@ -28,13 +30,11 @@ if ENV == 'dev':
                             host=DB_HOST)
 else:
     app.debug = False
-    DATABASE_URL = ('postgres://kdvrrlftxwwnny:59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc9@ec2-3-228-222-169.compute-1.amazonaws.com:5432/db8pq96jum6v55')
-    
-    
-    DB_HOST = 'ec2-3-228-222-169.compute-1.amazonaws.com'
-    DB_NAME = 'db8pq96jum6v55'
-    DB_USER = 'kdvrrlftxwwnny'
-    DB_PASS = '59a80e2f97dc965e22eeb79b67a15462b7a96494fc5b7f6e5b5515f04ba5ccc9'
+    DATABASE_URL = ('postgres://zndzxoluvjahwq:d097adcaa8f06b8413a926edcc8376230da5ab1eb5cc03ed9f4b533ed7a910c0@ec2-52-87-123-108.compute-1.amazonaws.com:5432/de788dbpun4d63')
+    DB_HOST = 'ec2-52-87-123-108.compute-1.amazonaws.com'
+    DB_NAME = 'de788dbpun4d63'
+    DB_USER = 'zndzxoluvjahwq'
+    DB_PASS = 'd097adcaa8f06b8413a926edcc8376230da5ab1eb5cc03ed9f4b533ed7a910c0'
     
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
