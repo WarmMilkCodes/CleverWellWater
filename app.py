@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'super secret key'
 
 # Development vs. Production Environment
-ENV = 'dev'
+ENV = 'prod'
 
 db = SQLAlchemy()
 
