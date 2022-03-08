@@ -14,6 +14,8 @@ app.secret_key = 'super secret key'
 ENV = 'prod'
 
 db = SQLAlchemy()
+with app.app_context():
+    db.create_all()
 
 if ENV == 'dev':
     app.debug = True
