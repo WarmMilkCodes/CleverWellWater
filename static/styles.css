@@ -109,6 +109,15 @@ input {
     box-shadow: 1px 1px 20px darkgray;
 }
 
+th, td {
+    border-bottom: 2px solid #111;
+    border-top: 1px solid #111;
+}
+
+table.submissionTable tr:hover {
+    background-color: lightyellow;
+}
+
 /* Global */
 
 .divider:hover {
