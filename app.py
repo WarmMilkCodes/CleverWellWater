@@ -14,6 +14,12 @@ app.secret_key = 'super secret key'
 # Development vs. Production Environment
 ENV = 'prod'
 
+'''
+db = SQLAlchemy()
+with app.app_context():
+    db.create_all()
+'''
+
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/wells'
@@ -29,13 +35,11 @@ if ENV == 'dev':
                             host=DB_HOST)
 else:
     app.debug = False
-    DATABASE_URL = ('postgres://pezlqpguqtkknf:5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498@ec2-44-193-188-118.compute-1.amazonaws.com:5432/dad4ir0jhk9v39')
-    
-    
-    DB_HOST = 'ec2-44-193-188-118.compute-1.amazonaws.com'
-    DB_NAME = 'dad4ir0jhk9v39'
-    DB_USER = 'pezlqpguqtkknf'
-    DB_PASS = '5bef903172832582897e122f4963296868c22d6721201fd927a77d202018e498'
+    DATABASE_URL = ('postgres://zndzxoluvjahwq:d097adcaa8f06b8413a926edcc8376230da5ab1eb5cc03ed9f4b533ed7a910c0@ec2-52-87-123-108.compute-1.amazonaws.com:5432/de788dbpun4d63')
+    DB_HOST = 'ec2-52-87-123-108.compute-1.amazonaws.com'
+    DB_NAME = 'de788dbpun4d63'
+    DB_USER = 'zndzxoluvjahwq'
+    DB_PASS = 'd097adcaa8f06b8413a926edcc8376230da5ab1eb5cc03ed9f4b533ed7a910c0'
     
     conn = psycopg2.connect(dbname=DB_NAME, 
                         user=DB_USER, 
@@ -70,19 +74,19 @@ def home():
 def submit():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
-        collection_date = request.form['collection_date']
+        date = request.form['date']
         well_one_reading = request.form['well_one_reading']
         well_one_free = request.form['well_one_free']
         well_two_reading = request.form['well_two_reading']
         well_two_free = request.form['well_two_free']
-        outside_reading = request.form['outside_reading']
         outside_total = request.form['outside_total']
         outside_free = request.form['outside_free']
 
 
-        if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_reading == '' or outside_free == '' or outside_total == '':
+        if date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
-        cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
+        cur.execute("INSERT INTO wells (date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s)", (date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_total, outside_free))
+        conn.commit()
         curs = conn.cursor()
         curs.execute("ROLLBACK")
         conn.commit()
@@ -125,7 +129,6 @@ def download_report():
     sh.write(0, 3, 'Well One Free')
     sh.write(0, 4, 'Well Two Reading')
     sh.write(0, 5, 'Well Two Free')
-    sh.write(0, 6, 'Outside Reading')
     sh.write(0, 7, 'Outside Total')
     sh.write(0, 8, 'Outside Free')
 
@@ -138,7 +141,6 @@ def download_report():
         sh.write(id+1,3, row['Well One Free'])
         sh.write(id+1,4, row['Well Two Reading'])
         sh.write(id+1,5, row['Well Two Free'])
-        sh.write(id+1,6, row['Outside Reading'])
         sh.write(id+1,7, row['Outside Total'])
         sh.write(id+1,8, row['Outside Free'])
         id += 1
