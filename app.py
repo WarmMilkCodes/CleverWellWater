@@ -6,6 +6,7 @@ import io
 import csv
 import xlwt
 
+### TEST
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -51,7 +52,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/admin')
+@app.route('/admin.html')
 def adminPanel():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     s = "SELECT * FROM wells"
@@ -82,7 +83,6 @@ def submit():
         if collection_date == '' or well_one_reading == '' or well_one_free == '' or well_two_reading == '' or well_two_free == '' or outside_reading == '' or outside_free == '' or outside_total == '':
                return render_template('index.html', message="Please fill all required fields.")
         cur.execute("INSERT INTO wells (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (collection_date, well_one_reading, well_one_free, well_two_reading, well_two_free, outside_reading, outside_total, outside_free))
-        conn.commit()
         curs = conn.cursor()
         curs.execute("ROLLBACK")
         conn.commit()
